@@ -1,0 +1,12 @@
+{application, log_ingestor_app,
+ [
+  {description, "Your Log Ingestor Application"},
+  {vsn, "1.0.0"},
+  {modules, [log_ingestor_app, log_ingestor, log_handler, log_ingestor_sup]},
+  {registered, [log_ingestor_app, log_ingestor, log_handler, log_ingestor_sup]},
+  {applications, [
+                  kernel,
+                  stdlib,
+                  cowboy
+                 ]}
+ ]}.
