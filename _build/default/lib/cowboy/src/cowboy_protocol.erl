@@ -440,7 +440,6 @@ execute(Req, State=#state{middlewares=Middlewares, env=Env}) ->
 execute(Req, State, Env, []) ->
 	next_request(Req, State, get_value(result, Env, ok));
 execute(Req, State, Env, [Middleware|Tail]) ->
-	error_logger:warning_msg("in execute ~p",[Req]),
 	case Middleware:execute(Req, Env) of
 		{ok, Req2, Env2} ->
 			execute(Req2, State, Env2, Tail);

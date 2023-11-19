@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Log File Search</title>
+  </head>
+  <body>
+    <h1>Log File Search</h1>
+    
+    <input type="text" id="level" placeholder="Enter Level">
+    <button onclick="searchByLevel()">Search by Level</button>
+   </br>
+   <input type="text" id="message" placeholder="Enter Message">
+   <button onclick="searchByMessage()">Search by Message</button>
+   </br>
+   <input type="text" id="resourceId" placeholder="Enter Resource ID">
+   <button onclick="searchByResourceId()">Search	by resourceId</button>
+   </br>
+   <input type="text" id="timestamp" placeholder="Enter Timestamp">
+   <button onclick="searchByTimestamp()">Search  by Timestamp</button>
+   </br>
+   <input type="text" id="traceId" placeholder="Enter Trace ID">
+   <button onclick="searchByTraceId()">Search by TraceID</button>
+   </br>
+   <input type="text" id="spanId" placeholder="Enter Span ID">
+   <button onclick="searchBySpanId()">Search by SpanId</button>
+   </br>
+   <input type="text" id="commit" placeholder="Enter Commit">
+   <button onclick="searchByCommit()">Search By commit</button>
+   </br>
+   <input type="text" id="parentResourceId" placeholder="Enter Parent Resource ID">
+   <button onclick="searchByParentResourceId()">Search By ParentResourceID</button>
+   </br>
+   
+
+   <!-- Add buttons for other criteria -->
+
+   <!-- Result container to display search results -->
+   <div id="searchResults"></div>
+
+   <script>
+     function searchByLevel() {
+	 var level = document.getElementById('level').value;
+	 if (level.trim() === '') {
+	     alert('Please enter a value for Level.');
+	     return; // Stop further execution if level is empty
+     }
+     sendFilterRequest('level',level);
+     }
+
+     function searchByMessage() {
+	 var message = document.getElementById('message').value;
+	 if (message.trim() === '') {
+             alert('Please enter value for message.');
+             return; // Stop further execution if level is empty
+	 }
+     }
+     function searchByResourceId() {
+	 var resourceId = document.getElementById('resourceId').value.trim();
+	 if (resourceId === '') {
+	     alert('Please enter a value for Resource ID.');
+	     return;
+	 }
+     }
+     function searchByTimestamp() {
+	 var timestamp = document.getElementById('timestamp').value.trim();
+	 if (timestamp === '') {
+	     alert('Please enter a value for Timestamp.');
+	     return;
+	 }
+     }
+    function searchByTraceId() {
+	var traceId = document.getElementById('traceId').value.trim();
+	if (traceId === '') {
+	    alert('Please enter a value for Trace ID.');
+	    return;
+	}
+    }
+     function searchBySpanId() {
+	 var spanId = document.getElementById('spanId').value.trim();
+	 if (spanId === '') {
+	     alert('Please enter a value for Span ID.');
+	     return;
+	 }
+     }
+     function searchByCommit() {
+	 var commit = document.getElementById('commit').value.trim();
+	 if (commit === '') {
+	     alert('Please enter a value for Commit.');
+	     return;
+	 }
+     }
+     function searchByParentResourceId() {
+	 var parentResourceId = document.getElementById('parentResourceId').value.trim();
+	 if (parentResourceId === '') {
+	     alert('Please enter a value for Parent Resource ID.');
+	     return;
+	 }
+     }
+     function sendFilterRequest(criteria, value) {
+     var xhttp = new XMLHttpRequest(); // Define xhttp here before usage
+     xhttp.onreadystatechange = function() {
+     
+     if (this.status === 200) {
+     // Process filtered log data received from the server
+     var filteredLogs = JSON.parse(this.responseText);
+     }
+     };
+     xhttp.open('GET', 'http://localhost:3000/filter_logs?criteria=' + criteria + '&value=' + value, true);
+     xhttp.send();
+     }
+     function displayFilteredLogs(filteredLogs) {
+     console.log("reaching dislay");
+     console.log(filteredLogs);
+     }
+   </script>
+  </body>
+</html>

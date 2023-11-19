@@ -28,7 +28,8 @@ terminate(_Reason, _Req,_State) ->
 process_received_data(Data) ->
     error_logger:warning_msg("in process receive ~p",[Data]),
     % Process the received log data (e.g., append it to the log file)
-    {ok, LogFile} = file:open("/Users/kshitij/log_ingestor/src/example.txt", [write]),
+    {ok, LogFile} = file:open("/Users/kshitij/Desktop/log_ingestor/src/example.txt", [read,write,append]),
     error_logger:warning_msg("here after recieve~p~n",[LogFile]),
     file:write(LogFile, Data),
+    file:write(LogFile,<<"\n">>),
     file:close(LogFile).

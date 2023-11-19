@@ -33,7 +33,8 @@ start_web_server(Port) ->
 dispatch_rules() ->
     cowboy_router:compile([
         {'_', [
-            {"/ingest", log_handler, []}
+            {"/ingest", log_handler, []},
+	     {"/filter_logs", filter_handler, []}
         ]}
     ]).
 
