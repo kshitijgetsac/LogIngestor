@@ -1,5 +1,5 @@
 # LogIngestor
-This is a simple log ingestor made using erlang
+This is a simple log ingestor made using erlang\n
 Steps to compile
 brew install rebar3 if rebar3 is not present in your system
 clone the repository
